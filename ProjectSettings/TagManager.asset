@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemigo1
+  - Enemigo2
+  - Enemigo3
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Invader
   - Laser
   - Missile
-  - 
+  - Bunker
   - 
   - 
   - 

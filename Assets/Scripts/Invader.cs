@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Invader : MonoBehaviour
 {
+    public int ppKill = 10;
+    public UpdateScore pointCounter; // Debes asignar esto desde el Inspector.
+
     public Sprite[] animationSprites;                       //Number of sprites (frames)
     public float animationTime = 1.0f;                      //Time between animations
 
@@ -9,7 +12,7 @@ public class Invader : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;                 //Sprite Render
     private int _animationFrame;                            //Current animation frame
-
+     
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();   // This will search for the component (sprite)
@@ -18,6 +21,7 @@ public class Invader : MonoBehaviour
     private void Start()
     {
         InvokeRepeating(nameof(AnimateSprite), this.animationTime, this.animationTime); //It calls a method, and then repeats it
+        pointCounter = FindObjectOfType<UpdateScore>();
     }
 
     private void AnimateSprite(){
@@ -34,10 +38,13 @@ public class Invader : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.gameObject.layer ==  LayerMask.NameToLayer("Laser"))
-        {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Laser") || other.gameObject.layer == LayerMask.NameToLayer("Bunker"))
+        {        
             this.killed.Invoke();
-            this.gameObject.SetActive(false);   
+            Destroy(gameObject);
+            pointCounter.IncreaseScore(ppKill);
+
         }
     }
+
 }

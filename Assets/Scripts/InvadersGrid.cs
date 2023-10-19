@@ -44,7 +44,10 @@ public class InvadersGrid : MonoBehaviour
     }
 
 
-    private void Update()
+    // grid de lado a lado 
+    // enemigos hacia abajo
+
+    private void FixedUpdate()
     {                                           // Increases speed when enemy killed
         this.transform.position += _direction * this.speed.Evaluate(this.percentKilled) * Time.deltaTime;
 
