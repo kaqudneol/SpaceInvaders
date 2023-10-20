@@ -1,8 +1,9 @@
-using Unity.VisualScripting.Dependencies.Sqlite;
+
 using UnityEngine;
 
 public class Invader : MonoBehaviour
 {
+    public string enemyType;
     public int ppKill = 10;
     public UpdateScore pointCounter; // Debes asignar esto desde el Inspector.
 
@@ -41,10 +42,22 @@ public class Invader : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {        
+            enemyType = this.gameObject.name.Replace("(Clone)", "").Trim(); 
+
+            switch (enemyType)
+            {
+                case "Enemigo1":
+                    pointCounter.IncreaseScore(ppKill);
+                    break;
+                case "Enemigo2":
+                    pointCounter.IncreaseScore(ppKill*2);
+                    break;
+                case "Enemigo3":
+                    pointCounter.IncreaseScore(ppKill*5);
+                    break;
+            }
             this.killed.Invoke();
             Destroy(gameObject);
-            pointCounter.IncreaseScore(ppKill);
-
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Bunker"))
         {
