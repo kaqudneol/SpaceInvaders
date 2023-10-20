@@ -8,15 +8,26 @@ public class Player : MonoBehaviour
     public float speed = 5.0f;
 
     private bool _laserActive;
+
+
+    //Cambiar las variables para cuando la pantalla se aumente
+    Vector3 rightEdge = new Vector3(14.0f, 0.0f, 0.0f);
+    Vector3 leftEdge = new Vector3(-14.0f, 0.0f, 0.0f);
     private void Update()
     {
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            this.transform.position += Vector3.left *this.speed *Time.deltaTime;
+            if(this.transform.position.x> leftEdge.x)
+            {
+                this.transform.position += Vector3.left *this.speed *Time.deltaTime;
+            }
         }
         else if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            this.transform.position += Vector3.right *this.speed *Time.deltaTime;
+            if(this.transform.position.x<rightEdge.x)           
+            {
+                this.transform.position += Vector3.right *this.speed *Time.deltaTime;
+            }
         }    
 
 

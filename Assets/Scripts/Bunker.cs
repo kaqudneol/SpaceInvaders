@@ -37,8 +37,9 @@ public class Bunker : MonoBehaviour
         // Calcula el factor de oscurecimiento en base a la vida actual
         float proportionalFactor = (float)hp / initialhp; // Cambia 3 al valor máximo de vida
 
-        // Aplica el color oscurecido al material
-        Color newColor = initialColor * proportionalFactor;
+        // Aplica el color oscurecido al material, ahora se diferencia mas
+        // Color newColor = initialColor * proportionalFactor;
+        Color newColor = new Color(initialColor.r * proportionalFactor, initialColor.g * proportionalFactor, initialColor.b * proportionalFactor, initialColor.a);
         material.color = newColor;
     }
 }

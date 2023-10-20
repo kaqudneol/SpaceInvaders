@@ -53,8 +53,13 @@ public class InvadersGrid : MonoBehaviour
 
         // To check the position
 
-        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        //Delimitado por la posicion de la camara 
+        //Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+        //Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+
+        Vector3 rightEdge = new Vector3(15.0f, 0.0f, 0.0f);
+        Vector3 leftEdge = new Vector3(-15.0f, 0.0f, 0.0f);
+       
 
         foreach(Transform invader in this.transform)//We loop for each invader ( has this touched the edge?)
         {
