@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class Invader : MonoBehaviour
@@ -38,12 +39,17 @@ public class Invader : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Laser") || other.gameObject.layer == LayerMask.NameToLayer("Bunker"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Laser"))
         {        
             this.killed.Invoke();
             Destroy(gameObject);
             pointCounter.IncreaseScore(ppKill);
 
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Bunker"))
+        {
+            this.killed.Invoke();
+            Destroy(gameObject);
         }
     }
 
